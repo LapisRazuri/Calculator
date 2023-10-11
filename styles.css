@@ -1,0 +1,86 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Courier New', Courier, monospace
+}
+
+body {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+
+
+.container {
+    display:flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    border-color: black;
+    border-style: solid;
+    background-color: pink;
+    height: 610px;
+    width: 400px;
+    border-radius: 7%;   
+}
+
+.display {
+    width: 300px;
+    height: 100px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10%;
+    background-color: aqua;
+    box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+.btnContainer {
+    width: 350px;
+    height: 410px;
+    border-color: black;
+    border-style: solid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: lavenderblush;
+    border-radius: 3%;
+}
+
+.btnRow0, .btnRow1, .btnRow2, .btnRow3, .btnRow4 {
+    width: 305px;
+    height:150px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 10%;
+    /* border-color: black;
+    border-style: solid;
+    background-color: paleturquoise; */
+}
+
+.btn, .btnAC, .btnInvisible {
+    width: 70px;
+    height: 70px;
+    border-color: black;
+    border-style: solid;
+    border-radius: 10%;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
+    background-color: lightgoldenrodyellow;
+    text-align: center;
+    font-size: 50px;
+    padding: 10px;
+}
+
+.btnAC {
+    padding: 12px 15px 12px 9px;
+    font-size: 40px;
+}
+
+.btnInvisible {
+    visibility: hidden;
+}
