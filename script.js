@@ -14,6 +14,7 @@ let btnMultiply = document.getElementsByClassName("btnMultiply");
 let btnDivide = document.getElementsByClassName("btnDivide");
 let display = document.getElementsByClassName("display");
 let btns = document.getElementsByTagName("button")
+let btnArray = Array.from(btns)
 
 const add = (a, b) => a + b;
 console.log(add(3, 7))
@@ -63,44 +64,43 @@ function operate (a, op, b) {
 
 
 
+
 function displayValue (textContOfButton) {
    
     let maxitems = 8;
     let equation = [];      // console.log(Array.isArray(equation)) works but typeof equation gives 'undefined'
-    
-    
-    if (display[0].textContent.length < maxitems)  {
-        equation.push(textContOfButton)
-        display[0].textContent += equation;
-        console.log(Array.isArray(equation))
-    }
 
-    else { 
-        display[0].textContent = "ERROR";
-        display[0].style.color = "red"
-        
-
-    }
-       
-       
-        }   
     
-        
    
-     
+        if (display[0].textContent.length < maxitems)  {
+            if (display[0].textContent.includes("ERROR") ) {
+                display[0].textContent = "";
+                display[0].style.color = "black";
+            }
+             
 
+            else {
+                equation.push(textContOfButton);
+                display[0].textContent += equation;
+                display[0].style.color = "black";
+            }
+            
+        }
 
-    let btnArray = Array.from(btns)
-    for (let i = 0; i > btnArray.length; i++ ) {
-
-    }
-
+        else  {
+            display[0].textContent = "ERROR";
+            display[0].style.color = "red";
+            display[0].textContent += equation
+            console.log(display[0].textContent.length)
+        }
+}      
 
 
     btnArray.forEach( function (button) {
         if (button.textContent == "AC") {
             button.addEventListener("click", function (){
                 display[0].textContent = '';
+                equation = [];
             })
             
 
@@ -114,5 +114,7 @@ function displayValue (textContOfButton) {
         }
     })
 
+
+   
 
 
