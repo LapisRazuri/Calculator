@@ -67,7 +67,6 @@ function displayValue (textContOfButton) {
    
     let maxitems = 8;
     let equation = [];      // console.log(Array.isArray(equation)) works but typeof equation gives 'undefined'
-    let 
     
     
     if (display[0].textContent.length < maxitems)  {
@@ -79,6 +78,8 @@ function displayValue (textContOfButton) {
     else { 
         display[0].textContent = "ERROR";
         display[0].style.color = "red"
+        
+
     }
        
        
@@ -89,12 +90,29 @@ function displayValue (textContOfButton) {
      
 
 
-let buttonArray = Array.from(btns);
-buttonArray.forEach( function (button) {
-    button.addEventListener("click", function () {
-        displayValue(button.textContent)
+    let btnArray = Array.from(btns)
+    for (let i = 0; i > btnArray.length; i++ ) {
+
+    }
+
+
+
+    btnArray.forEach( function (button) {
+        if (button.textContent == "AC") {
+            button.addEventListener("click", function (){
+                display[0].textContent = '';
+            })
+            
+
+        }
+
+        else {
+            button.addEventListener("click", function () {
+                displayValue(button.textContent)
+            })
+            
+        }
     })
-})
 
 
 
