@@ -55,17 +55,16 @@ btnArray.forEach( function (button) {
             display[0].textContent = '';
             equation = [];
             firstNum = "";
+            secondNum = "";
         })
     }
 
     else if (button.textContent == "=") {
         button.addEventListener("click", function () {
             displayValue(button.textContent);
-            process(equation);
+            let processedEquation = process(equation);
+            calculate(processedEquation);
             display[0].textContent = result;
-            
-
-
         })
         // equation.splice(equation.indexOf("="), 1)
         
@@ -142,18 +141,18 @@ function calculate (finalEquation) {
                 firstOpIndex = i;
                 secondNum = "";
                 console.log(operator)
-
-
+                return result;
             }                  
         }
 
         else if ( finalEquation[i] !== NaN && i > firstOpIndex  ) {
                 secondNum += finalEquation[i];
+                console.log(secondNum);
                 result = operate(Number(firstNum), operator, Number(secondNum));
                 firstNum = result;
                 
 
-                return finalEquation;   
+                return result;   
         }
 
         else if (finalEquation[i] !== NaN) {    // if input is a number
@@ -177,7 +176,7 @@ function process (equa) {
             processed.push(currentItem);
             currentItem = "";
             processed.push(currentOperator = equa[j]);
-            currentOperator = [];
+            currentOperator = "";
             console.log(processed)
         }
         else if ( equa[j] !== NaN ) {
