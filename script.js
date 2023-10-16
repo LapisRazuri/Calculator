@@ -128,6 +128,7 @@ function displayValue (textContOfButton) {
 
 function storeEquation (input) {
     equation.push(input);
+    console.log(equation)
 
 }
     
@@ -144,7 +145,7 @@ function sendGetResult (finalEquation) {
         if (isNaN(finalEquation[i])) {
             operator[0] = finalEquation[i];
             console.log(operator)
-            if (finalEquation.indexOf(finalEquation[i]) > firstOpIndex) {
+            if ( i > firstOpIndex) {
                 // firstNum = operate(firstNum, operator, secondNum);
                 operator[0] = finalEquation[i];
                 firstOpIndex = i;
@@ -153,7 +154,7 @@ function sendGetResult (finalEquation) {
             }                  
         }
 
-        else if ( finalEquation[i] !== NaN && finalEquation.indexOf(finalEquation[i]) > firstOpIndex  ) {
+        else if ( finalEquation[i] !== NaN && i > firstOpIndex  ) {
                 secondNum.push(finalEquation[i])
 
                 console.log(firstNum, operator, secondNum)
@@ -164,11 +165,10 @@ function sendGetResult (finalEquation) {
 
         else if (finalEquation[i] !== NaN) {    // if input is a number
                 firstNum.push(finalEquation[i]);
-                console.log(firstNum)
+                console.log(firstNum);
         }       
     }
 }
-
 
 
 
