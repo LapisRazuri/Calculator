@@ -169,7 +169,7 @@ function sendGetResult (finalEquation) {
         }       
     }
 }
-
+ 
 
 
 //you sort the equation as it is pressed 
