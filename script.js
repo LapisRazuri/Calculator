@@ -1,13 +1,3 @@
-// let btn1 = document.getElementsByClassName("btn1");
-// let btn2 = document.getElementsByClassName("btn2");
-// let btn3 = document.getElementsByClassName("btn3");
-// let btn4 = document.getElementsByClassName("btn4");
-// let btn5 = document.getElementsByClassName("btn5");
-// let btn6 = document.getElementsByClassName("btn6");
-// let btn7 = document.getElementsByClassName("btn7");
-// let btn8 = document.getElementsByClassName("btn8");
-// let btn9 = document.getElementsByClassName("btn9");
-// let btn0 = document.getElementsByClassName("btn0");
 let btnMinus = document.getElementsByClassName("btnMinus");
 let btnPlus = document.getElementsByClassName("btnPlus");
 let btnMultiply = document.getElementsByClassName("btnMultiply");
@@ -16,12 +6,13 @@ let display = document.getElementsByClassName("display");
 let btns = document.getElementsByTagName("button")
 let btnArray = Array.from(btns)
 let equation = [];
-let firstNum = [];
-let operator = [];
-let secondNum = [];
+let firstNum = "";
+let operator = "";
+let secondNum = "";
 let firstOpIndex = 0;
 let result = 0;
 const operators = ["+", "-", "*", "/"];
+
 
 
 
@@ -63,14 +54,14 @@ btnArray.forEach( function (button) {
         button.addEventListener("click", function (){
             display[0].textContent = '';
             equation = [];
-            firstNum = [];
+            firstNum = "";
         })
     }
 
     else if (button.textContent == "=") {
         button.addEventListener("click", function () {
-            displayValue(button.textContent)
-            sendGetResult(equation)
+            displayValue(button.textContent);
+            process(equation);
             display[0].textContent = result;
             
 
@@ -111,7 +102,7 @@ function displayValue (textContOfButton) {
             else {
                 display[0].textContent += textContOfButton;
                 display[0].style.color = "black";
-                storeEquation(textContOfButton);
+                store(textContOfButton);
                
             }          
         }
@@ -126,7 +117,7 @@ function displayValue (textContOfButton) {
 
 
 
-function storeEquation (input) {
+function store (input) {
     equation.push(input);
     console.log(equation)
 
@@ -135,7 +126,7 @@ function storeEquation (input) {
 
 
 
-function sendGetResult (finalEquation) {
+function calculate (finalEquation) {
 
     firstOpIndex = finalEquation.findIndex( item => operators.includes(item)); 
     
@@ -143,28 +134,32 @@ function sendGetResult (finalEquation) {
     for (let i = 0; i < finalEquation.length; i++ ) {
 
         if (isNaN(finalEquation[i])) {
-            operator[0] = finalEquation[i];
+            operator = finalEquation[i];
             console.log(operator)
             if ( i > firstOpIndex) {
                 // firstNum = operate(firstNum, operator, secondNum);
-                operator[0] = finalEquation[i];
+                operator = finalEquation[i];
                 firstOpIndex = i;
-                secondNum = [];
+                secondNum = "";
                 console.log(operator)
+
+
             }                  
         }
 
         else if ( finalEquation[i] !== NaN && i > firstOpIndex  ) {
-                secondNum.push(finalEquation[i])
-
-                console.log(firstNum, operator, secondNum)
+                secondNum += finalEquation[i];
                 result = operate(Number(firstNum), operator, Number(secondNum));
                 firstNum = result;
-                console.log(firstNum, operator, secondNum)    
+                
+
+                return finalEquation;   
         }
 
         else if (finalEquation[i] !== NaN) {    // if input is a number
-                firstNum.push(finalEquation[i]);
+                firstNum += finalEquation[i];
+
+                
                 console.log(firstNum);
         }       
     }
@@ -172,5 +167,26 @@ function sendGetResult (finalEquation) {
  
 
 
-//you sort the equation as it is pressed 
-//not after every thing is input
+function process (equa) {
+    let processed = [];
+    let currentItem = '';
+    let currentOperator = '';
+
+    for (let j = 0; j < equa.length; j++ ) {
+        if (isNaN(equation[j])) {
+            processed.push(currentItem);
+            currentItem = "";
+            processed.push(currentOperator = equa[j]);
+            currentOperator = [];
+            console.log(processed)
+        }
+        else if ( equa[j] !== NaN ) {
+            currentItem += equa[j];
+            console.log(currentItem)
+        }  
+    }
+    console.log(processed)
+    return processed;
+}
+
+  
