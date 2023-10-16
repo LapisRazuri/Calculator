@@ -17,7 +17,7 @@ let btns = document.getElementsByTagName("button")
 let btnArray = Array.from(btns)
 let equation = [];
 let firstNum = [];
-let operator = "";
+let operator = [];
 let secondNum = [];
 let firstOpIndex = 0;
 let result = 0;
@@ -63,6 +63,7 @@ btnArray.forEach( function (button) {
         button.addEventListener("click", function (){
             display[0].textContent = '';
             equation = [];
+            firstNum = [];
         })
     }
 
@@ -70,7 +71,8 @@ btnArray.forEach( function (button) {
         button.addEventListener("click", function () {
             displayValue(button.textContent)
             sendGetResult(equation)
-            display[0].textContent = result
+            display[0].textContent = result;
+            
 
 
         })
@@ -134,26 +136,21 @@ function storeEquation (input) {
 
 function sendGetResult (finalEquation) {
 
+    firstOpIndex = finalEquation.findIndex( item => operators.includes(item)); 
+    
+
     for (let i = 0; i < finalEquation.length; i++ ) {
 
-
-    firstOpIndex = finalEquation.findIndex( item => operators.includes(item)); 
-    console.log(firstOpIndex)
-
-
         if (isNaN(finalEquation[i])) {
-            operator = finalEquation[i];
+            operator[0] = finalEquation[i];
             console.log(operator)
             if (finalEquation.indexOf(finalEquation[i]) > firstOpIndex) {
                 // firstNum = operate(firstNum, operator, secondNum);
-                operator = finalEquation[i];
+                operator[0] = finalEquation[i];
                 firstOpIndex = i;
                 secondNum = [];
                 console.log(operator)
-                
-
-            }           
-                
+            }                  
         }
 
         else if ( finalEquation[i] !== NaN && finalEquation.indexOf(finalEquation[i]) > firstOpIndex  ) {
@@ -162,20 +159,13 @@ function sendGetResult (finalEquation) {
                 console.log(firstNum, operator, secondNum)
                 result = operate(Number(firstNum), operator, Number(secondNum));
                 firstNum = result;
-                console.log(firstNum, operator, secondNum)
-
-                
-
-                
+                console.log(firstNum, operator, secondNum)    
         }
 
         else if (finalEquation[i] !== NaN) {    // if input is a number
                 firstNum.push(finalEquation[i]);
                 console.log(firstNum)
-
-        }
-
-            
+        }       
     }
 }
 
