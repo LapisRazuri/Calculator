@@ -41,7 +41,7 @@ function operate (a, op, b) {
         return multiply(a, b)
     }
 
-    else if ( op == "/" ) {
+    else if ( op == '/' ) {
         return divide(a, b)
     }  
 }
@@ -50,6 +50,10 @@ function operate (a, op, b) {
 
 
 btnArray.forEach( function (button) {
+    button.addEventListener("click", function () {
+        displayValue(button.textContent)
+    })
+
     if (button.textContent == "AC") {
         button.addEventListener("click", function (){
             display[0].textContent = '';
@@ -61,26 +65,15 @@ btnArray.forEach( function (button) {
 
     else if (button.textContent == "=") {
         button.addEventListener("click", function () {
-            displayValue(button.textContent);
-            let processedEquation = process(equation);
-            calculate(processedEquation);
+            let processed = process(equation);
+            let replaced = replaceDivideMultiply(processed);
+            calculate(replaced);
             display[0].textContent = result;
         })
-        // equation.splice(equation.indexOf("="), 1)
-        
-        
-        
+        // equation.splice(equation.indexOf("="), 1)  
     } 
 
-    else {
-        button.addEventListener("click", function () {
-            displayValue(button.textContent)
-        })
-        
-    }
 })
-
-
 
 
 function displayValue (textContOfButton) {
@@ -113,15 +106,53 @@ function displayValue (textContOfButton) {
         }
 }      
 
-
-
-
 function store (input) {
     equation.push(input);
-    console.log(equation)
-
 }
     
+
+
+
+function process (equa) {
+    let processed = [];
+    let currentItem = '';
+    let currentOperator = '';
+
+    for (let j = 0; j < equa.length; j++ ) {
+        if (isNaN(equation[j])) {
+            processed.push(currentItem);
+            currentItem = "";
+            currentOperator = equa[j];
+            processed.push(currentOperator)
+            currentOperator = "";
+            console.log(processed)
+            }
+
+        else if ( equa[j] !== NaN ) {
+            currentItem += equa[j];
+            console.log(currentItem)
+        }  
+    }
+
+    console.log(processed)
+    return processed;
+
+}   
+
+
+
+function replaceDivideMultiply (finalEquation) {
+    var replaced = finalEquation.map(function (item) {
+        // Replace '÷' with '/' and '×' with '*'
+        item = item.replace('÷', '/');
+        item = item.replace('×', '*');
+        return item;
+      });
+
+console.log(replaced)
+return replaced;
+}
+
 
 
 
@@ -141,7 +172,7 @@ function calculate (finalEquation) {
                 firstOpIndex = i;
                 secondNum = "";
                 console.log(operator)
-                return result;
+                
             }                  
         }
 
@@ -149,16 +180,11 @@ function calculate (finalEquation) {
                 secondNum += finalEquation[i];
                 console.log(secondNum);
                 result = operate(Number(firstNum), operator, Number(secondNum));
-                firstNum = result;
-                
-
-                return result;   
+                firstNum = result;                  
         }
 
         else if (finalEquation[i] !== NaN) {    // if input is a number
                 firstNum += finalEquation[i];
-
-                
                 console.log(firstNum);
         }       
     }
@@ -166,26 +192,7 @@ function calculate (finalEquation) {
  
 
 
-function process (equa) {
-    let processed = [];
-    let currentItem = '';
-    let currentOperator = '';
 
-    for (let j = 0; j < equa.length; j++ ) {
-        if (isNaN(equation[j])) {
-            processed.push(currentItem);
-            currentItem = "";
-            processed.push(currentOperator = equa[j]);
-            currentOperator = "";
-            console.log(processed)
-        }
-        else if ( equa[j] !== NaN ) {
-            currentItem += equa[j];
-            console.log(currentItem)
-        }  
-    }
-    console.log(processed)
-    return processed;
-}
+
 
   
