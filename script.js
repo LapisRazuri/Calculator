@@ -68,7 +68,7 @@ btnArray.forEach( function (button) {
             let processed = process(equation);
             let replaced = replaceDivideMultiply(processed);
             calculate(replaced);
-            display[0].textContent = result;
+            display[0].textContent = parseFloat(result.toFixed(11));
         })
         // equation.splice(equation.indexOf("="), 1)  
     } 
