@@ -23,19 +23,30 @@ body {
     border-color: black;
     border-style: solid;
     background-color: pink;
-    height: 610px;
+    height: auto;
     width: 400px;
-    border-radius: 7%;   
+    border-radius: 7%; 
+    min-height: 610px;  
 }
 
 .display {
     width: 300px;
-    height: 100px;
+    height: auto;
     border-color: black;
     border-style: solid;
     border-radius: 10%;
     background-color: aqua;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+    text-align: end;
+    padding: 21px;
+    font-size: 50px;
+    word-wrap: break-word;
+    max-height: 300px;
+    min-height: 130px;
+    overflow-y: auto;
+
+    
+    
 }
 
 .btnContainer {
@@ -49,6 +60,8 @@ body {
     align-items: center;
     background-color: lavenderblush;
     border-radius: 3%;
+    
+    
 }
 
 .btnRow0, .btnRow1, .btnRow2, .btnRow3, .btnRow4 {
@@ -63,7 +76,7 @@ body {
     background-color: paleturquoise; */
 }
 
-.btn, .btnAC, .btnInvisible {
+button {
     width: 70px;
     height: 70px;
     border-color: black;

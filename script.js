@@ -17,6 +17,7 @@ const operators = ["+", "-", "*", "/"];
 
 
 
+
 const add = (a, b) => a + b;
 
 const subtract = (a, b) => a - b; 
@@ -50,34 +51,49 @@ function operate (a, op, b) {
 
 
 btnArray.forEach( function (button) {
-    button.addEventListener("click", function () {
-        displayValue(button.textContent)
-    })
 
-    if (button.textContent == "AC") {
-        button.addEventListener("click", function (){
-            display[0].textContent = '';
-            equation = [];
-            firstNum = "";
-            secondNum = "";
-        })
-    }
-
-    else if (button.textContent == "=") {
         button.addEventListener("click", function () {
-            let processed = process(equation);
-            let replaced = replaceDivideMultiply(processed);
-            calculate(replaced);
-            display[0].textContent = parseFloat(result.toFixed(11));
-        })
-        // equation.splice(equation.indexOf("="), 1)  
-    } 
+            if (display[0].textContent == parseFloat(result.toFixed(11))) {
+                display[0].textContent = '';
+                equation = [];
+                firstNum = "";
+                secondNum = "";
+                result = 0;
+                displayValue(button.textContent)
+            }
 
+            else {
+                displayValue(button.textContent);
+            }
+        });
+
+        if (button.textContent == "AC") {
+            button.addEventListener("click", function (){
+                display[0].textContent = '';
+                equation = [];
+                firstNum = "";
+                secondNum = "";
+            })
+        }
+
+        else if (button.textContent == "=") {
+            button.addEventListener("click", function () {
+                let processed = process(equation);
+                let replaced = replaceDivideMultiply(processed);
+                calculate(replaced);
+                console.log(replaced);
+                display[0].textContent = parseFloat(result.toFixed(11));
+                
+            })
+            // equation.splice(equation.indexOf("="), 1)  
+        } 
 })
 
 
+
+
 function displayValue (textContOfButton) {
-    let maxitems = 8;
+    let maxitems = 100;
           // console.log(Array.isArray(equation)) works but typeof equation gives 'undefined'
 
     
@@ -99,12 +115,14 @@ function displayValue (textContOfButton) {
             }          
         }
 
-        
         else  {
             display[0].textContent = "ERROR";
             display[0].style.color = "red";
         }
 }      
+
+
+
 
 function store (input) {
     equation.push(input);
@@ -171,8 +189,7 @@ function calculate (finalEquation) {
                 operator = finalEquation[i];
                 firstOpIndex = i;
                 secondNum = "";
-                console.log(operator)
-                
+                console.log(operator);
             }                  
         }
 
@@ -186,11 +203,9 @@ function calculate (finalEquation) {
         else if (finalEquation[i] !== NaN) {    // if input is a number
                 firstNum += finalEquation[i];
                 console.log(firstNum);
-        }       
+       }       
     }
 }
- 
-
 
 
 
