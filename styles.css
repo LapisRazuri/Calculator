@@ -13,8 +13,6 @@ body {
     
 }
 
-
-
 .container {
     display:flex;
     flex-direction: column;
@@ -36,7 +34,14 @@ body {
     border-radius: 10%;
     background-color: aqua;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
+    font-size: 50px;
+    padding: 21px;
+    justify-content: flex-end;
+    display: inline-flex;
+    overflow: hidden; 
 }
+
+
 
 .btnContainer {
     width: 350px;
@@ -63,7 +68,7 @@ body {
     background-color: paleturquoise; */
 }
 
-.btn, .btnAC, .btnInvisible {
+button {
     width: 70px;
     height: 70px;
     border-color: black;
