@@ -12,6 +12,11 @@ let secondNum = "";
 let firstOpIndex = 0;
 let result = 0;
 const operators = ["+", "-", "*", "/"];
+let transformed = "";
+let replaced = "";
+let calculated = "";
+let limitedDigits = "";
+
 
 
 
@@ -53,7 +58,7 @@ function operate (a, op, b) {
 btnArray.forEach( function (button) {
 
         button.addEventListener("click", function () {
-            if (display[0].textContent == parseFloat(result.toFixed(11))) {
+            if (display[0].textContent == limitedDigits) {
                 display[0].textContent = '';
                 equation = [];
                 firstNum = "";
@@ -78,17 +83,37 @@ btnArray.forEach( function (button) {
 
         else if (button.textContent == "=") {
             button.addEventListener("click", function () {
-                let processed = process(equation);
-                let replaced = replaceDivideMultiply(processed);
-                calculate(replaced);
+                transformed = process(equation);
+                replaced = replaceDivideMultiply(transformed);
+                calculated = calculate(replaced);
+                limitedDigits = limitDigits(calculated);
+
                 console.log(replaced);
-                display[0].textContent = parseFloat(result.toFixed(11));
-                
+                console.log(calculated);
+                console.log(limitedDigits);
+               
+                display[0].textContent = limitedDigits;                
             })
             // equation.splice(equation.indexOf("="), 1)  
         } 
 })
 
+function limitDigits (finalEquation) {
+    let x = Math.abs(finalEquation).toString();
+    console.log(x)
+
+    if ( x.length > 9) {
+        console.log(finalEquation)
+        let y = parseFloat(finalEquation.toFixed(3)).toExponential();
+        console.log(y)
+        return y;
+    }
+
+    else {
+        console.log(finalEquation)
+        return finalEquation;
+    }
+}
 
 
 
@@ -206,7 +231,9 @@ function calculate (finalEquation) {
                 console.log(firstNum);
        }       
     }
+    return result;
 }
+
 
 
 
