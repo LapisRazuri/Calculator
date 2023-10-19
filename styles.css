@@ -13,8 +13,6 @@ body {
     
 }
 
-
-
 .container {
     display:flex;
     flex-direction: column;
@@ -37,17 +35,14 @@ body {
     border-radius: 10%;
     background-color: aqua;
     box-shadow: inset 2px 2px 5px rgba(0, 0, 0, 0.3);
-    text-align: end;
-    padding: 21px;
     font-size: 50px;
-    word-wrap: break-word;
-    max-height: 300px;
-    min-height: 130px;
-    overflow-y: auto;
-
-    
-    
+    padding: 21px;
+    justify-content: flex-end;
+    display: inline-flex;
+    overflow: hidden; 
 }
+
+
 
 .btnContainer {
     width: 350px;
