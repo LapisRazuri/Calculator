@@ -29,7 +29,7 @@ body {
 
 .display {
     width: 300px;
-    height: auto;
+    height: 130px;
     border-color: black;
     border-style: solid;
     border-radius: 10%;
