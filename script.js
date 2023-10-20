@@ -254,7 +254,7 @@ function addSubtract (finalEquation) {
             console.log(operator)
 
             let opResult = operate(Number(firstNum), operator, Number(secondNum));
-            
+            console.log(opResult)
             finalEquation.splice( opIndex - 1, 3, opResult);
             console.log(finalEquation)
             i -= 2;
@@ -263,5 +263,5 @@ function addSubtract (finalEquation) {
 
     }
     console.log(finalEquation)
-    return finalEquation;
+    return Number(finalEquation);
 }
