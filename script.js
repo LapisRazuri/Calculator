@@ -63,7 +63,7 @@ btnArray.forEach( function (button) {
             if (display[0].textContent == limitedDigits) {
                 display[0].textContent = '';
                 equation = [];
-                
+                console.log(button.textContent)
                 displayValue(button.textContent)
             }
 
@@ -80,6 +80,17 @@ btnArray.forEach( function (button) {
                 secondNum = "";
             })
         }
+
+        else if (button.textContent == "CE") {
+            button.addEventListener("click", function (){
+               
+                display[0].textContent = display[0].textContent.slice(0, -3)
+                
+                console.log()
+
+            })
+        }
+
 
         else if (button.textContent == "=") {
             button.addEventListener("click", function () {
