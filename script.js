@@ -9,8 +9,6 @@ let equation = [];
 let firstNum = "";
 let operator = "";
 let secondNum = "";
-let firstOpIndex = 0;
-let result = 0;
 let operators = ["*", "/", "+", "-"];
 let transformed = "";
 let replaced = "";
@@ -65,9 +63,7 @@ btnArray.forEach( function (button) {
             if (display[0].textContent == limitedDigits) {
                 display[0].textContent = '';
                 equation = [];
-                firstNum = "";
-                secondNum = "";
-                result = 0;
+                
                 displayValue(button.textContent)
             }
 
@@ -204,44 +200,6 @@ function replaceDivideMultiply (finalEquation) {
 console.log(replaced)
 return replaced;
 }
-
-
-
-
-function calculate (finalEquation) {
-
-    firstOpIndex = finalEquation.findIndex( item => operators.includes(item)); 
-    
-
-    for (let i = 0; i < finalEquation.length; i++ ) {
-
-        if (isNaN(finalEquation[i])) {
-            operator = finalEquation[i];
-            console.log(operator)
-            if ( i > firstOpIndex) {
-                // firstNum = operate(firstNum, operator, secondNum);
-                operator = finalEquation[i];
-                firstOpIndex = i;
-                secondNum = "";
-                console.log(operator);
-            }                  
-        }
-
-        else if ( finalEquation[i] !== NaN && i > firstOpIndex  ) {
-                secondNum += finalEquation[i];
-                console.log(secondNum);
-                result = operate(Number(firstNum), operator, Number(secondNum));
-                firstNum = result;                  
-        }
-
-        else if (finalEquation[i] !== NaN) {    // if input is a number
-                firstNum += finalEquation[i];
-                console.log(firstNum);
-       }       
-    }
-    return result;
-}
-
 
 
 
