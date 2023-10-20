@@ -11,15 +11,18 @@ let operator = "";
 let secondNum = "";
 let firstOpIndex = 0;
 let result = 0;
-const operators = ["+", "-", "*", "/"];
+let operators = ["*", "/", "+", "-"];
 let transformed = "";
 let replaced = "";
 let calculated = "";
 let limitedDigits = "";
-
-
-
-
+let divideIndex = "";
+let multiplyIndex = "";
+let addIndex = "";
+let subtractIndex = "";
+let divideResult = "";
+let dividedMultiplied = "";
+let addedSubtracted = "";
 
 
 
@@ -86,11 +89,13 @@ btnArray.forEach( function (button) {
             button.addEventListener("click", function () {
                 transformed = process(equation);
                 replaced = replaceDivideMultiply(transformed);
-                calculated = calculate(replaced);
-                limitedDigits = limitDigits(calculated);
+                dividedMultiplied = divideMultiply(replaced);
+                addedSubtracted = addSubtract(dividedMultiplied);
+                limitedDigits = limitDigits(addedSubtracted);
 
                 console.log(replaced);
-                console.log(calculated);
+                console.log(dividedMultiplied)
+                console.log(addedSubtracted)
                 console.log(limitedDigits);
                
                 display[0].textContent = limitedDigits;                
@@ -240,4 +245,59 @@ function calculate (finalEquation) {
 
 
 
-  
+
+function divideMultiply (finalEquation) {
+
+    for (let i = 0; i < finalEquation.length; i++ ) {
+        if (finalEquation[i] == "*" || finalEquation[i] =="/"){
+
+            opIndex = finalEquation.indexOf(finalEquation[i]);
+
+            firstNum = finalEquation[ opIndex - 1 ]
+            operator = finalEquation[ opIndex ] 
+            secondNum = finalEquation[ opIndex + 1 ]
+
+            console.log(firstNum)
+            console.log(secondNum)
+            console.log(operator)
+
+            let opResult = operate(Number(firstNum), operator, Number(secondNum));
+            
+            finalEquation.splice( opIndex - 1, 3, opResult);
+            console.log(finalEquation)
+            i -= 2;
+
+        }
+    }
+    console.log(finalEquation)
+    return finalEquation;
+}
+
+
+
+function addSubtract (finalEquation) {
+    for (let i = 0; i < finalEquation.length; i++ ) {
+        if (finalEquation[i] == "+" || finalEquation[i] == "-"){
+
+            opIndex = finalEquation.indexOf(finalEquation[i]);
+
+            firstNum = finalEquation[ opIndex - 1 ]
+            operator = finalEquation[ opIndex ] 
+            secondNum = finalEquation[ opIndex + 1 ]
+
+            console.log(firstNum)
+            console.log(secondNum)
+            console.log(operator)
+
+            let opResult = operate(Number(firstNum), operator, Number(secondNum));
+            
+            finalEquation.splice( opIndex - 1, 3, opResult);
+            console.log(finalEquation)
+            i -= 2;
+
+        }
+
+    }
+    console.log(finalEquation)
+    return finalEquation;
+}
