@@ -156,6 +156,7 @@ function displayValue (textContOfButton) {
 
 function store (input) {
     equation.push(input);
+
 }
     
 
@@ -194,6 +195,8 @@ function replaceDivideMultiply (finalEquation) {
         // Replace '÷' with '/' and '×' with '*'
         item = item.replace('÷', '/');
         item = item.replace('×', '*');
+       
+
         return item;
       });
 
@@ -225,6 +228,9 @@ function divideMultiply (finalEquation) {
             console.log(finalEquation)
             i -= 2;
 
+        }
+        else if (finalEquation[i] == "=") {
+            finalEquation.splice(i, 1)
         }
     }
     console.log(finalEquation)
