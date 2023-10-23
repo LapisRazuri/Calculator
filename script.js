@@ -59,57 +59,75 @@ function operate (a, op, b) {
 
 btnArray.forEach( function (button) {
 
+    if (button.textContent == "AC") {
+        button.addEventListener("click", function (){
+            display[0].textContent = '';
+            equation = [];
+            firstNum = "";
+            secondNum = "";
+        })
+    }
+
+    else if (button.textContent == "CE") {
+        button.addEventListener("click", function (){
+            
+            display[0].textContent = display[0].textContent.slice(0, -1)
+            equation.pop();
+            console.log(equation)
+            
+            
+
+        })
+    }
+
+
+    else if (button.textContent == "=") {
+        button.addEventListener("click", function () {
+            displayValue(button.textContent);
+            console.log(equation)
+            transformed = process(equation);
+            replaced = replaceDivideMultiply(transformed);
+            dividedMultiplied = divideMultiply(replaced);
+            addedSubtracted = addSubtract(dividedMultiplied);
+            limitedDigits = limitDigits(addedSubtracted);
+
+            console.log(replaced);
+            console.log(dividedMultiplied)
+            console.log(addedSubtracted)
+            console.log(limitedDigits);
+           
+            display[0].textContent = limitedDigits;                
+        })
+           // equation.splice(equation.indexOf("="), 1)  
+    } 
+
+    else {
+
         button.addEventListener("click", function () {
             if (display[0].textContent == limitedDigits) {
+                // if ((button.textContent !== "CE" && button.textContent !== "AC")) {
                 display[0].textContent = '';
                 equation = [];
                 console.log(button.textContent)
+                console.log(equation)
+                
                 displayValue(button.textContent)
+                // }
             }
 
+            // else if ((button.textContent !== "CE" && button.textContent !== "AC"))
             else {
                 displayValue(button.textContent);
             }
         });
+    }
+          
 
-        if (button.textContent == "AC") {
-            button.addEventListener("click", function (){
-                display[0].textContent = '';
-                equation = [];
-                firstNum = "";
-                secondNum = "";
-            })
-        }
-
-        else if (button.textContent == "CE") {
-            button.addEventListener("click", function (){
-               
-                display[0].textContent = display[0].textContent.slice(0, -3)
-                
-                console.log()
-
-            })
-        }
+         
+});
 
 
-        else if (button.textContent == "=") {
-            button.addEventListener("click", function () {
-                transformed = process(equation);
-                replaced = replaceDivideMultiply(transformed);
-                dividedMultiplied = divideMultiply(replaced);
-                addedSubtracted = addSubtract(dividedMultiplied);
-                limitedDigits = limitDigits(addedSubtracted);
 
-                console.log(replaced);
-                console.log(dividedMultiplied)
-                console.log(addedSubtracted)
-                console.log(limitedDigits);
-               
-                display[0].textContent = limitedDigits;                
-            })
-            // equation.splice(equation.indexOf("="), 1)  
-        } 
-})
 
 function limitDigits (finalEquation) {
     let x = Math.abs(finalEquation).toString();
@@ -271,8 +289,9 @@ function addSubtract (finalEquation) {
             i -= 2;
 
         }
-
     }
     console.log(finalEquation)
     return Number(finalEquation);
-}
+};
+
+
