@@ -149,45 +149,12 @@ function limitDigits (finalEquation) {
 
 
 
-
-
 function displayValue (textContOfButton) {
-    let maxitems = 100;
-          // console.log(Array.isArray(equation)) works but typeof equation gives 'undefined'
+    display[0].textContent += textContOfButton;
+    equation.push(textContOfButton);
 
-    
-   //Checks if the length of array is within the limit
-    if (display[0].textContent.length < maxitems)  {
-            //Erases the ERROR messange and clears display
-            if (display[0].textContent.includes("ERROR") ) {
-                display[0].textContent = "";
-                display[0].style.color = "black";
-            }
-             
-
-            //Renders the textContent of the buttons
-            else {
-                display[0].textContent += textContOfButton;
-                display[0].style.color = "black";
-                store(textContOfButton);
-               
-            }          
-        }
-
-        else  {
-            display[0].textContent = "ERROR";
-            display[0].style.color = "red";
-        }
 }      
-
-
-
-
-function store (input) {
-    equation.push(input);
-
-}
-    
+ 
 
 
 
