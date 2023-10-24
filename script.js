@@ -58,6 +58,24 @@ function operate (a, op, b) {
 
 
 btnArray.forEach( function (button) {
+    button.addEventListener("click", function () {
+        if (display[0].textContent == limitedDigits) {
+            // if ((button.textContent !== "CE" && button.textContent !== "AC")) {
+            display[0].textContent = '';
+            equation = [];
+            console.log(button.textContent)
+            console.log(equation)
+            if ((button.textContent !== "CE" && button.textContent !== "AC")){
+                displayValue(button.textContent)
+            }
+        }
+
+        else if ((button.textContent !== "CE" && button.textContent !== "AC" && button.textContent !== "=")){
+            displayValue(button.textContent);
+            console.log(button.textContent)
+        }
+    });
+    
 
     if (button.textContent == "AC") {
         button.addEventListener("click", function (){
@@ -74,12 +92,8 @@ btnArray.forEach( function (button) {
             display[0].textContent = display[0].textContent.slice(0, -1)
             equation.pop();
             console.log(equation)
-            
-            
-
         })
     }
-
 
     else if (button.textContent == "=") {
         button.addEventListener("click", function () {
@@ -99,31 +113,7 @@ btnArray.forEach( function (button) {
             display[0].textContent = limitedDigits;                
         })
            // equation.splice(equation.indexOf("="), 1)  
-    } 
-
-    else {
-
-        button.addEventListener("click", function () {
-            if (display[0].textContent == limitedDigits) {
-                // if ((button.textContent !== "CE" && button.textContent !== "AC")) {
-                display[0].textContent = '';
-                equation = [];
-                console.log(button.textContent)
-                console.log(equation)
-                
-                displayValue(button.textContent)
-                // }
-            }
-
-            // else if ((button.textContent !== "CE" && button.textContent !== "AC"))
-            else {
-                displayValue(button.textContent);
-            }
-        });
-    }
-          
-
-         
+    }        
 });
 
 
@@ -149,12 +139,14 @@ function limitDigits (finalEquation) {
 
 
 
+
+
 function displayValue (textContOfButton) {
     display[0].textContent += textContOfButton;
     equation.push(textContOfButton);
 
 }      
- 
+    
 
 
 
